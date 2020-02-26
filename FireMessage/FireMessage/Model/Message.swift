@@ -52,6 +52,7 @@ struct Message: MessageType {
     
     var formattedStringFromDate: String {
         let df = DateFormatter()
+        df.locale = .current
         df.dateFormat = "MM/dd/yyyy hh:mm:ss"
         return df.string(from: sentDate)
     }

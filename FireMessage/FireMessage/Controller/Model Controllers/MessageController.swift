@@ -38,35 +38,35 @@ class MessageController {
             }
             if !valueDict.isEmpty {
                 if valueDict.count == tableSnapshot.count {
+                    self.messages = []
                     _ = valueDict.map {
                         var message: Message = Message(sender: self.currentSender,
                                                        messageText: "")
-                        if let dict = $0.value as? [String:Any] {
+                        if let dict = $0.value as? [String:String] {
                             for (key,value) in dict {
                                 switch key {
                                 case Message.FirebaseKeys.messageId.rawValue:
-                                    message.messageId = value as! String
+                                    message.messageId = value
                                 case Message.FirebaseKeys.messageText.rawValue:
-                                    message.messageText = value as! String
+                                    message.messageText = value
                                 case Message.FirebaseKeys.senderName.rawValue:
-                                    message.senderName = value as! String
+                                    message.senderName = value
                                 case Message.FirebaseKeys.senderId.rawValue:
-                                    message.senderId = value as! String
+                                    message.senderId = value
                                 case Message.FirebaseKeys.sentDate.rawValue:
                                     let df = DateFormatter()
-                                    df.dateStyle = .short
-                                    df.timeStyle = .short
-                                    if let date = df.date(from: value as! String) {
+                                    df.locale = .current
+                                    df.dateFormat = "MM/dd/yyyy hh:mm:ss"
+                                    if let date = df.date(from: value) {
                                         message.sentDate = date
                                     }
-                                    default: break
+                                default: break
                                 }
                             }
                             self.messages.append(message)
-                            
                         }
-                        
                     }
+                    print(self.messages)
                     complete(nil)
                 } else {
                     let error = NSError(domain: "DataService.fetchMessages.valueDict.count", code: 999)
