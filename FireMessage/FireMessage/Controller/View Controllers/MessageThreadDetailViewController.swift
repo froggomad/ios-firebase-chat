@@ -12,7 +12,7 @@ import InputBarAccessoryView
 class MessageThreadDetailViewController: MessagesViewController {
     //=======================
     // MARK: - Properties
-    var messageController = MessageController()
+    var messageController: MessageController?
     var room: Room = Room(roomId: "ABC123",
                            roomName: "TestName",
                            messages: [])
@@ -27,7 +27,7 @@ class MessageThreadDetailViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
-        messageController.fetchMessagesFromRoom(room: room) { error in
+        messageController?.fetchMessagesFromRoom(room: room) { error in
             if let error = error {
                 print(error)
             } else {
@@ -38,14 +38,14 @@ class MessageThreadDetailViewController: MessagesViewController {
     
     func assignMessages() {
         defer { messagesCollectionView.reloadData() }
-        room.messages = self.messageController.messages.sorted { $0.sentDate < $1.sentDate }
+        room.messages = self.messageController?.messages.sorted { $0.sentDate < $1.sentDate } ?? []
     }
     
 }
 
 extension MessageThreadDetailViewController: MessagesDataSource {
     func currentSender() -> SenderType {
-        return messageController.currentSender
+        return messageController?.currentSender ?? Sender(senderId: "nil", displayName: "Error")
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -73,6 +73,7 @@ extension MessageThreadDetailViewController: MessagesDisplayDelegate {
 
 extension MessageThreadDetailViewController: MessageInputBarDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        guard let messageController = messageController else { return }
         let message = Message(sender: messageController.currentSender, messageText: inputBar.inputTextView.text)
         messageController.createMessageIn(room: self.room, message: message)
         messageController.fetchMessagesFromRoom(room: self.room) { error in

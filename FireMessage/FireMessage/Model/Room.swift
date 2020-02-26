@@ -10,8 +10,15 @@ import Foundation
 
 struct Room {
     //=======================
+    // MARK: - Types
+    enum FirebaseKeys: String {
+        case roomId
+        case roomName
+        case messages
+    }
+    //=======================
     // MARK: - Properties
-    let roomId: String
-    let roomName: String
+    var roomId: String
+    var roomName: String
     var messages: [Message]
 }

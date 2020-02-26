@@ -19,11 +19,18 @@ class MessageThreadTableViewController: UITableViewController {
     //=======================
     // MARK: - Properties
     var rooms = [Room]()
+    var messageController = MessageController()
     
     //=======================
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageController.fetchRooms { (error) in
+            if let error = error {
+                print(error)
+            }
+            self.rooms = self.messageController.rooms
+        }
         
     }
     
@@ -34,8 +41,7 @@ class MessageThreadTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #warning("Incomplete implementation, return the number of rows")
-        return 0
+        messageController.rooms.count
     }
     
     
@@ -58,7 +64,7 @@ class MessageThreadTableViewController: UITableViewController {
             guard let destination = segue.destination as? MessageThreadDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow
             else { return }
-            
+            destination.messageController = messageController
             destination.room = rooms[indexPath.row]
         default: fatalError("Create identifier to match \(String(describing: segue.identifier)) in enum")
         }

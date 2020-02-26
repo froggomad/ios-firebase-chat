@@ -20,6 +20,7 @@ class MessageController {
         return Sender(senderId: "ABC123", displayName: "Kenny")
     }
     var messages = [Message]()
+    var rooms = [Room]()
     
     //=======================
     // MARK: - Create/Update
@@ -29,6 +30,43 @@ class MessageController {
     
     //=======================
     // MARK: - Read
+    func fetchRooms(complete: @escaping (Error?) -> ()) {
+        DB.observeSingleEvent(of: .value) { (roomsSnapshot) in
+            guard let roomsSnapshot = roomsSnapshot.children.allObjects as? [DataSnapshot] else {return}
+            var valueDict = [String:Any]()
+            for value in roomsSnapshot {
+                valueDict[value.key] = value.value
+            }
+            if !valueDict.isEmpty {
+                if valueDict.count == roomsSnapshot.count {
+                    self.rooms = []
+                    _ = valueDict.map {
+                        var room = Room(roomId: "1", roomName: "no", messages: [])
+                        if let dict = $0.value as? [String:Any] {
+                            for (key, value) in dict {
+                                switch key {
+                                case Room.FirebaseKeys.roomId.rawValue:
+                                    room.roomId = value as! String
+                                case Room.FirebaseKeys.roomName.rawValue:
+                                    room.roomName = value as! String
+                                default: break
+                                }
+                            }
+                        }
+                        self.rooms.append(room)
+                    }
+                    complete(nil)
+                }  else {
+                    let error = NSError(domain: "DataService.fetchRooms.valueDict.count", code: 999)
+                    complete(error)
+                }
+            } else {
+                let error = NSError(domain: "DataService.fetchRooms.downloadFailed", code: 404)
+                complete(error)
+            }
+        }
+    }
+    
     func fetchMessagesFromRoom(room: Room, complete: @escaping (Error?) -> ()) {
         DB.child(room.roomId).observeSingleEvent(of: .value) { (tableSnapshot) in
             guard let tableSnapshot = tableSnapshot.children.allObjects as? [DataSnapshot] else {return}
