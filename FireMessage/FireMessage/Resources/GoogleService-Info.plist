@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>659454271831-q4ujgtdeaf87vpjnhc5gmvbhqm7b67a2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.659454271831-q4ujgtdeaf87vpjnhc5gmvbhqm7b67a2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCAMQGvCu_0SuJYv3ZPJOlHj3Y2uO--h8c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>659454271831</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hazystudios.FireMessage</string>
+	<key>PROJECT_ID</key>
+	<string>firemessage-5898b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>firemessage-5898b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:659454271831:ios:d74038bfa29a2a072b1e12</string>
+	<key>DATABASE_URL</key>
+	<string>https://firemessage-5898b.firebaseio.com</string>
+</dict>
+</plist>
