@@ -7,20 +7,91 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Create Message Thread View Controller-->
         <scene sceneID="F8g-yy-8yp">
             <objects>
-                <viewController id="R3y-PC-7r1" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="R3y-PC-7r1" customClass="CreateMessageThreadViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qcL-72-BgI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEa-TV-bpF" userLabel="BackgroundView">
+                                <rect key="frame" x="20" y="258" width="374" height="150"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="X1o-uT-FLr" userLabel="Parent stack">
+                                        <rect key="frame" x="20" y="0.0" width="334" height="130"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uGD-Tq-mOT" userLabel="horizontal stack">
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter A Room Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PF5-Uc-GsM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="294" height="40"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSN-OT-eF2">
+                                                        <rect key="frame" x="294" y="0.0" width="40" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Bkn-IR-fum"/>
+                                                            <constraint firstAttribute="width" constant="40" id="e10-sB-OH2"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                        <state key="normal" title="X">
+                                                            <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="closeButton:" destination="R3y-PC-7r1" eventType="touchUpInside" id="H89-sZ-TY4"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6EJ-jm-lwJ">
+                                                <rect key="frame" x="0.0" y="48" width="334" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiA-Wc-6zI">
+                                                <rect key="frame" x="0.0" y="90" width="334" height="40"/>
+                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Ktg-P0-3Iv"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                <state key="normal" title="Submit">
+                                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="submitButton:" destination="R3y-PC-7r1" eventType="touchUpInside" id="GgC-44-XVK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="X1o-uT-FLr" firstAttribute="top" secondItem="LEa-TV-bpF" secondAttribute="top" id="3fa-hz-Iuv"/>
+                                    <constraint firstAttribute="bottom" secondItem="X1o-uT-FLr" secondAttribute="bottom" constant="20" symbolic="YES" id="C9Z-CT-yIr"/>
+                                    <constraint firstAttribute="trailing" secondItem="X1o-uT-FLr" secondAttribute="trailing" constant="20" symbolic="YES" id="m3G-sz-99p"/>
+                                    <constraint firstItem="X1o-uT-FLr" firstAttribute="leading" secondItem="LEa-TV-bpF" secondAttribute="leading" constant="20" symbolic="YES" id="xkr-Mg-AFW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LEa-TV-bpF" firstAttribute="centerY" secondItem="AFD-Ty-BwO" secondAttribute="centerY" constant="-120" id="f4c-GS-gNX"/>
+                            <constraint firstItem="AFD-Ty-BwO" firstAttribute="trailing" secondItem="LEa-TV-bpF" secondAttribute="trailing" constant="20" id="npk-bu-ZMu"/>
+                            <constraint firstItem="LEa-TV-bpF" firstAttribute="leading" secondItem="AFD-Ty-BwO" secondAttribute="leading" constant="20" id="zZE-WC-ER3"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="AFD-Ty-BwO"/>
                     </view>
+                    <connections>
+                        <outlet property="roomNameTextField" destination="6EJ-jm-lwJ" id="bdn-iQ-IHD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dU-lC-ZFr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="675" y="-539"/>
+            <point key="canvasLocation" x="672.46376811594212" y="-539.0625"/>
         </scene>
         <!--Message Thread Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -47,12 +118,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sTK-Ck-hln">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoomCell" textLabel="RW9-nH-tMR" style="IBUITableViewCellStyleDefault" id="sTK-Ck-hln">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sTK-Ck-hln" id="1OH-Xn-eF4">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RW9-nH-tMR">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="RoomCellTapped" id="ADM-me-oMb"/>

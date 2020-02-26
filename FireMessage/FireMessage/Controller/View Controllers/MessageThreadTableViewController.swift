@@ -14,6 +14,7 @@ class MessageThreadTableViewController: UITableViewController {
     enum Identifier: String {
         case roomCellSegue = "RoomCellTapped"
         case addRoomSegue = "AddRoomSegue"
+        case roomCell = "RoomCell"
     }
     
     //=======================
@@ -23,15 +24,16 @@ class MessageThreadTableViewController: UITableViewController {
     
     //=======================
     // MARK: - View Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         messageController.fetchRooms { (error) in
             if let error = error {
                 print(error)
             }
             self.rooms = self.messageController.rooms
+            self.tableView.reloadData()
         }
-        
     }
     
     // MARK: - Table view data source
@@ -46,10 +48,8 @@ class MessageThreadTableViewController: UITableViewController {
     
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-     
-     // Configure the cell...
-     
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.roomCell.rawValue, for: indexPath)
+        cell.textLabel?.text = rooms[indexPath.row].roomName
      return cell
      }
     

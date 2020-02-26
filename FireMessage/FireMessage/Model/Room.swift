@@ -21,4 +21,11 @@ struct Room {
     var roomId: String
     var roomName: String
     var messages: [Message]
+    
+    var roomData: [String:Any] {
+        var rmDict = [String:Any]()
+        rmDict[FirebaseKeys.roomId.rawValue] = roomId
+        rmDict[FirebaseKeys.roomName.rawValue] = roomName
+        return rmDict
+    }
 }

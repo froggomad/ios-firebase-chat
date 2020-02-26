@@ -9,11 +9,22 @@
 import UIKit
 
 class CreateMessageThreadViewController: UIViewController {
-
+    @IBOutlet weak var roomNameTextField: UITextField!
+    let messageController = MessageController()
+    @IBAction func submitButton(_ sender: UIButton) {
+        guard let textField = roomNameTextField,
+            let roomName = textField.text
+        else { return }
+        messageController.createRoom(room: Room(roomId: UUID().uuidString,
+                                                roomName: roomName,
+                                                messages: []))
+        self.dismiss(animated: true)
+    }
+    @IBAction func closeButton(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
     
 

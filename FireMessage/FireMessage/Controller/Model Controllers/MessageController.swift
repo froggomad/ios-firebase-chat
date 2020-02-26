@@ -24,6 +24,10 @@ class MessageController {
     
     //=======================
     // MARK: - Create/Update
+    func createRoom(room: Room) {
+        DB.updateChildValues([room.roomId:room.roomData])
+    }
+    
     func createMessageIn(room: Room, message: Message) {
         DB.child(room.roomId).updateChildValues([message.messageId:message.messageData])
     }
@@ -53,7 +57,9 @@ class MessageController {
                                 }
                             }
                         }
-                        self.rooms.append(room)
+                        if room.roomId != "1" {
+                            self.rooms.append(room)
+                        }
                     }
                     complete(nil)
                 }  else {
