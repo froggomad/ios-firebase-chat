@@ -10,13 +10,23 @@ import MessageKit
 
 class MessageThreadDetailViewController: MessagesViewController {
     var messageController = MessageController()
-    let message = Message(sender: Sender(senderId: "123", displayName: "Me"), messageText: "Test")
     override func viewDidLoad() {
         super.viewDidLoad()
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        messageController.deleteMessage(message: message)
+        let message = Message(sender: Sender(senderId: "123", displayName: messageController.currentSender.displayName), messageText: "Test")
+        let room = Room(roomId: "ABC123",
+                        roomName: "TestName",
+                        messages: [message])
+        messageController.createMessageIn(room: room, message: message)
+        messageController.fetchMessagesFromRoom(room: room) { error in
+            if let error = error {
+                print(error)
+            } else {
+                self.messagesCollectionView.reloadData()
+            }
+        }
     }
     
     
@@ -28,7 +38,7 @@ extension MessageThreadDetailViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        let message = messageController.messages[indexPath.item]
+        let message = messageController.messages[indexPath.section]
         return message
     }
     
