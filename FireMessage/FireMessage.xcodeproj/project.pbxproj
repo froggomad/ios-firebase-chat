@@ -11,6 +11,8 @@
 		B91DE1132406083E00AE7302 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE1122406083E00AE7302 /* Message.swift */; };
 		B91DE11524060A7E00AE7302 /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE11424060A7E00AE7302 /* MessageController.swift */; };
 		B91DE1172406B0AA00AE7302 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE1162406B0AA00AE7302 /* Room.swift */; };
+		B91DE14124070DE500AE7302 /* MessageThreadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE14024070DE500AE7302 /* MessageThreadTableViewController.swift */; };
+		B91DE14324070DF700AE7302 /* CreateMessageThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE14224070DF700AE7302 /* CreateMessageThreadViewController.swift */; };
 		B9870CBD2405C1040020168A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870CBC2405C1040020168A /* AppDelegate.swift */; };
 		B9870CBF2405C1040020168A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870CBE2405C1040020168A /* SceneDelegate.swift */; };
 		B9870CC12405C1040020168A /* MessageThreadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9870CC02405C1040020168A /* MessageThreadDetailViewController.swift */; };
@@ -26,6 +28,8 @@
 		B91DE1122406083E00AE7302 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		B91DE11424060A7E00AE7302 /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		B91DE1162406B0AA00AE7302 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		B91DE14024070DE500AE7302 /* MessageThreadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageThreadTableViewController.swift; sourceTree = "<group>"; };
+		B91DE14224070DF700AE7302 /* CreateMessageThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMessageThreadViewController.swift; sourceTree = "<group>"; };
 		B9870CB92405C1040020168A /* FireMessage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireMessage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9870CBC2405C1040020168A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9870CBE2405C1040020168A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				B9870CC02405C1040020168A /* MessageThreadDetailViewController.swift */,
+				B91DE14024070DE500AE7302 /* MessageThreadTableViewController.swift */,
+				B91DE14224070DF700AE7302 /* CreateMessageThreadViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -277,10 +283,12 @@
 			files = (
 				B9870CC12405C1040020168A /* MessageThreadDetailViewController.swift in Sources */,
 				B91DE1132406083E00AE7302 /* Message.swift in Sources */,
+				B91DE14324070DF700AE7302 /* CreateMessageThreadViewController.swift in Sources */,
 				B91DE1172406B0AA00AE7302 /* Room.swift in Sources */,
 				B91DE11524060A7E00AE7302 /* MessageController.swift in Sources */,
 				B9870CBD2405C1040020168A /* AppDelegate.swift in Sources */,
 				B9870CBF2405C1040020168A /* SceneDelegate.swift in Sources */,
+				B91DE14124070DE500AE7302 /* MessageThreadTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

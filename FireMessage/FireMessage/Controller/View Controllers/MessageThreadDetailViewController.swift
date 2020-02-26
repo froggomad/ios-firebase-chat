@@ -10,10 +10,17 @@ import MessageKit
 import InputBarAccessoryView
 
 class MessageThreadDetailViewController: MessagesViewController {
+    //=======================
+    // MARK: - Properties
     var messageController = MessageController()
     var room: Room = Room(roomId: "ABC123",
                            roomName: "TestName",
                            messages: [])
+    
+    
+    
+    //=======================
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         messagesCollectionView.messagesDataSource = self
@@ -24,12 +31,15 @@ class MessageThreadDetailViewController: MessagesViewController {
             if let error = error {
                 print(error)
             } else {
-                self.room.messages = self.messageController.messages
-                self.messagesCollectionView.reloadData()
+                self.assignMessages()
             }
         }
     }
     
+    func assignMessages() {
+        defer { messagesCollectionView.reloadData() }
+        room.messages = self.messageController.messages.sorted { $0.sentDate < $1.sentDate }
+    }
     
 }
 
@@ -71,11 +81,9 @@ extension MessageThreadDetailViewController: MessageInputBarDelegate {
                 return
             }
             DispatchQueue.main.async {
-                self.room.messages = self.messageController.messages
-                self.messagesCollectionView.reloadData()
+                self.assignMessages()
             }
         }
-        
         inputBar.inputTextView.text = ""
     }
 }
