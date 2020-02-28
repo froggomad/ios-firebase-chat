@@ -124,9 +124,9 @@
 		B9870CD4240606C50020168A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B9870CC02405C1040020168A /* MessageThreadDetailViewController.swift */,
 				B91DE14024070DE500AE7302 /* MessageThreadTableViewController.swift */,
 				B91DE14224070DF700AE7302 /* CreateMessageThreadViewController.swift */,
+				B9870CC02405C1040020168A /* MessageThreadDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

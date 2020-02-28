@@ -13,11 +13,14 @@ class MessageThreadDetailViewController: MessagesViewController {
     //=======================
     // MARK: - Properties
     var messageController: MessageController?
-    var room: Room = Room(roomId: "ABC123",
-                           roomName: "TestName",
-                           messages: [])
-    
-    
+    var room: Room? {
+        didSet {
+            if isViewLoaded {
+                assignMessages()
+            }
+        }
+    }
+    var messages: [Message] = []
     
     //=======================
     // MARK: - View Lifecycle
@@ -27,6 +30,7 @@ class MessageThreadDetailViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
+        guard let room = room else { return }
         messageController?.fetchMessagesFromRoom(room: room) { error in
             if let error = error {
                 print(error)
@@ -37,10 +41,30 @@ class MessageThreadDetailViewController: MessagesViewController {
     }
     
     func assignMessages() {
-        defer { messagesCollectionView.reloadData() }
-        room.messages = self.messageController?.messages.sorted { $0.sentDate < $1.sentDate } ?? []
+        guard let messageController = messageController else { return }
+        if messageController.messages.count >= 2 {
+            messages = messageController.messages.sorted { $0.sentDate < $1.sentDate }
+            messagesCollectionView.reloadData()
+        }
     }
     
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        //Room -> Encode -> Data ->
+        let roomData = try? PropertyListEncoder().encode(room)
+        coder.encode(roomData, forKey: "roomData")
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        // Data -> Decode -> Room -> setup view
+        guard let roomData = coder.decodeObject(forKey: "roomData") as? Data else { return }
+        do {
+            room = try PropertyListDecoder().decode(Room.self, from: roomData)
+        } catch {
+            print("error decoding: ", error)
+        }
+    }
 }
 
 extension MessageThreadDetailViewController: MessagesDataSource {
@@ -49,7 +73,7 @@ extension MessageThreadDetailViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        let message = room.messages[indexPath.item]
+        let message = messages[indexPath.item]
         return message
     }
     
@@ -58,7 +82,7 @@ extension MessageThreadDetailViewController: MessagesDataSource {
     }
     
     func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
-        return room.messages.count
+        return messages.count
     }
     
 }
@@ -73,10 +97,13 @@ extension MessageThreadDetailViewController: MessagesDisplayDelegate {
 
 extension MessageThreadDetailViewController: MessageInputBarDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        guard let messageController = messageController else { return }
+        guard let messageController = messageController,
+            let room = room
+        else { return }
+        
         let message = Message(sender: messageController.currentSender, messageText: inputBar.inputTextView.text)
-        messageController.createMessageIn(room: self.room, message: message)
-        messageController.fetchMessagesFromRoom(room: self.room) { error in
+        messageController.createMessageIn(room: room, message: message)
+        messageController.fetchMessagesFromRoom(room: room) { error in
             if let error = error {
                 print(error)
                 return

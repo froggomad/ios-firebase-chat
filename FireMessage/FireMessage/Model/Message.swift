@@ -9,7 +9,7 @@
 import Foundation
 import MessageKit
 
-struct Message: MessageType {
+struct Message: MessageType, Codable {
     //=======================
     // MARK: - Types
     enum FirebaseKeys: String {

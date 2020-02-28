@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Room {
+struct Room: Codable {
     //=======================
     // MARK: - Types
     enum FirebaseKeys: String {

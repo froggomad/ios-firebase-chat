@@ -10,7 +10,7 @@
         <!--Create Message Thread View Controller-->
         <scene sceneID="F8g-yy-8yp">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="R3y-PC-7r1" customClass="CreateMessageThreadViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="CreateMessageRestorationId" modalPresentationStyle="fullScreen" id="R3y-PC-7r1" customClass="CreateMessageThreadViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qcL-72-BgI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
         <!--Message Thread Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MessageThreadDetailViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="MessageThreadDetailVC" id="BYZ-38-t0r" customClass="MessageThreadDetailViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,7 +112,7 @@
         <!--Message Thread Table View Controller-->
         <scene sceneID="ffm-5T-pvQ">
             <objects>
-                <tableViewController id="LhD-r7-plt" customClass="MessageThreadTableViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController restorationIdentifier="MessageThreadVC" id="LhD-r7-plt" customClass="MessageThreadTableViewController" customModule="FireMessage" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yMv-Ap-LEg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,7 +159,7 @@
         <!--Navigation Controller-->
         <scene sceneID="7Tw-mr-Del">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Pb-Ee-hiY" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="MessageThreadNav" automaticallyAdjustsScrollViewInsets="NO" id="7Pb-Ee-hiY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Myc-6x-ZTg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
